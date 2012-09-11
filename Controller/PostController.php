@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
 
 /**
@@ -20,7 +19,7 @@ class PostController extends Controller
     /**
      * List of posts for admin
      *
-     * @param int      $page     Page number
+     * @param int $page Page number
      *
      * @return array
      * @Route("/blog/{title}/{page}", name="blog", requirements={"page" = "\d+"}, defaults={"page" = "1", "title" = "page"} )
@@ -29,11 +28,11 @@ class PostController extends Controller
     public function indexAction($page)
     {
         $allPosts = $this->get('doctrine')->getEntityManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
+                        ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
 
         $pageRange = $this->container->getParameter('page_range');
 
-         $posts= $this->get('knp_paginator')->paginate($allPosts, $page, $pageRange);
+        $posts = $this->get('knp_paginator')->paginate($allPosts, $page, $pageRange);
 
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
@@ -82,7 +81,7 @@ class PostController extends Controller
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
         $posts = $this->get('doctrine')->getEntityManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
+                        ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
         foreach ($posts as $post) {
             $entry = new \Zend\Feed\Writer\Entry();
             $entry->setTitle($post->getTitle());
@@ -105,8 +104,9 @@ class PostController extends Controller
     public function lastAction($count = 1)
     {
         $posts = $this->get('doctrine')->getEntityManager()
-                ->getRepository("StfalconBlogBundle:Post")->getLastPosts($count);
+                        ->getRepository("StfalconBlogBundle:Post")->getLastPosts($count);
 
         return array('posts' => $posts);
     }
+
 }

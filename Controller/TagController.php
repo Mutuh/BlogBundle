@@ -5,7 +5,6 @@ namespace Stfalcon\Bundle\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 
 /**
@@ -19,8 +18,8 @@ class TagController extends Controller
     /**
      * View tag
      *
-     * @param Tag $tag
-     * @param int      $page     Page number
+     * @param Tag $tag  Tag
+     * @param int $page Page number
      *
      * @return array
      * @Route("/blog/tag/{text}/{title}/{page}", name="blog_tag_view", requirements={"page" = "\d+"}, defaults={"page" = "1", "title" = "page"})
@@ -29,7 +28,7 @@ class TagController extends Controller
     public function viewAction(Tag $tag, $page)
     {
         $pageRange = $this->container->getParameter('page_range');
-        $posts = $this->get('knp_paginator')->paginate($tag->getPosts(), $page, $pageRange);
+        $posts     = $this->get('knp_paginator')->paginate($tag->getPosts(), $page, $pageRange);
 
         if ($this->has('menu.breadcrumbs')) {
             $breadcrumbs = $this->get('menu.breadcrumbs');
@@ -38,7 +37,7 @@ class TagController extends Controller
         }
 
         return array(
-            'tag' => $tag,
+            'tag'   => $tag,
             'posts' => $posts,
         );
     }
