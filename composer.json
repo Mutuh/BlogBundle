@@ -16,7 +16,10 @@
         "php": ">=5.3.0",
         "symfony/symfony": ">=2.1",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "knplabs/knp-paginator-bundle": "2.2"
+        "sonata-project/admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/cache-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "dev-master"
     },
     "suggest": {
         "liip/functional-test-bundle": "functional testing bundle",
