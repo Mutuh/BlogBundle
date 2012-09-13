@@ -11,7 +11,8 @@ Features include:
 - Pagination of posts and tags
 - Administrating via SonataAdminBundle
 - Syntax highlighting with geshi.
-  Wrap code blocks with <code><pre lang="LANGUAGE" line="1"> and </pre></code> where "LANGUAGE" is a Geshi supported language syntax.
+  Wrap code blocks with  ```html
+<pre lang="LANGUAGE" line="1"> and </pre> ``` where "LANGUAGE" is a Geshi supported language syntax.
 - Cut is available with <!--more--> tag
 - Unit tested
 
