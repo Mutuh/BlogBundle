@@ -2,7 +2,6 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
@@ -12,7 +11,7 @@ use Stfalcon\Bundle\BlogBundle\Entity\Tag;
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
-class TagController extends Controller
+class TagController extends AbstractController
 {
 
     /**
@@ -22,8 +21,6 @@ class TagController extends Controller
      * @param int $page Page number
      *
      * @return array
-     * @Route("/blog/tag/{text}/{title}/{page}", name="blog_tag_view", requirements={"page" = "\d+"}, defaults={"page" = "1", "title" = "page"})
-     * @Template()
      */
     public function viewAction(Tag $tag, $page)
     {
@@ -39,7 +36,7 @@ class TagController extends Controller
         return array(
             'tag'   => $tag,
             'posts' => $posts,
-        );
+        ));
     }
 
 }

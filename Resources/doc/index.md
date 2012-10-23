@@ -34,7 +34,7 @@ Installation is a quick 5 step process:
 }
 ```
 
-### Step 2: Enable the bundle
+### Step 2: Enable the StfalconBlogBundle and requiremented bundles
 
 Finally, enable the bundle in the kernel:
 
@@ -47,6 +47,22 @@ public function registerBundles()
     $bundles = array(
         // ...
         new Stfalcon\Bundle\BlogBundle\StfalconBlogBundle(),
+
+        // for use KnpMenuBundle
+        new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+        
+        // for use KnpPaginatorBundle
+        new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+        
+        // for use StofDoctrineExtensionsBundle
+        new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+        
+        // for use SonataAdminBundle
+        new Sonata\CacheBundle\SonataCacheBundle(),
+        new Sonata\BlockBundle\SonataBlockBundle(),
+        new Sonata\AdminBundle\SonataAdminBundle(),
+        new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+        new Sonata\jQueryBundle\SonatajQueryBundle(),
     );
 }
 ```
@@ -73,6 +89,7 @@ In YAML:
 # app/config/config.yml
 # StfalconBlogBundle Configuration
 stfalcon_blog:
+    disqus_shortname: "your-disqus-shortname-goes-here"
     rss:
         title: "your-blog-title-goes-here"
         description: "your-blog-description-goes-here"
@@ -119,5 +136,6 @@ Run the following command.
 
 ``` bash
 $ php app/console doctrine:schema:update --force
+$ php app/console assets:install
 ```
 Now that you have completed the installation and configuration of the BlogBundle!
