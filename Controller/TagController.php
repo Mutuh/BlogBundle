@@ -36,7 +36,7 @@ class TagController extends AbstractController
         return array(
             'tag'   => $tag,
             'posts' => $posts,
-        ));
+        );
     }
 
 }
