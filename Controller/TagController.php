@@ -17,15 +17,20 @@ class TagController extends AbstractController
     /**
      * View tag
      *
-     * @param Tag $tag  Tag
-     * @param int $page Page number
+     * @Route("/blog/tag/{text}/{title}/{page}", name="blog_tag_view",
+     *      requirements={"page"="\d+", "title"="page"},
+     *      defaults={"page"="1", "title"="page"})
+     * @Template()
+     *
+     * @param Tag $tag
+     * @param int $page page number
      *
      * @return array
      */
     public function viewAction(Tag $tag, $page)
     {
-        $pageRange = $this->container->getParameter('page_range');
-        $posts     = $this->get('knp_paginator')->paginate($tag->getPosts(), $page, $pageRange);
+        $posts = $this->get('knp_paginator')
+            ->paginate($tag->getPosts(), $page, 10);
 
         if ($this->has('menu.breadcrumbs')) {
             $breadcrumbs = $this->get('menu.breadcrumbs');
@@ -33,10 +38,10 @@ class TagController extends AbstractController
             $breadcrumbs->addChild($tag->getText())->setIsCurrent(true);
         }
 
-        return array(
-            'tag'   => $tag,
+        return $this->_getRequestDataWithDisqusShortname(array(
+            'tag' => $tag,
             'posts' => $posts,
-        );
+        ));
     }
 
 }

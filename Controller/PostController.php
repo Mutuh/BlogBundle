@@ -27,6 +27,11 @@ class PostController extends AbstractController
     /**
      * List of posts for admin
      *
+     * @Route("/blog/{title}/{page}", name="blog",
+     *      requirements={"page"="\d+", "title"="page"},
+     *      defaults={"page"="1", "title"="page"})
+     * @Template()
+     *
      * @param int $page Page number
      *
      * @return array
@@ -34,11 +39,8 @@ class PostController extends AbstractController
     public function indexAction($page)
     {
         $allPosts = $this->get('doctrine')->getEntityManager()
-                        ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
-
-        $pageRange = $this->container->getParameter('page_range');
-
-        $posts = $this->get('knp_paginator')->paginate($allPosts, $page, $pageRange);
+                ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
+        $posts= $this->get('knp_paginator')->paginate($allPosts, $page, 10);
 
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');

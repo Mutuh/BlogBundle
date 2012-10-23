@@ -24,8 +24,6 @@ file in this bundle:
 
 [Read the Documentation for master](https://github.com/mutuh/BlogBundle/blob/master/Resources/doc/index.md)
 
-[Read the Documentation for master (Russian language)](https://github.com/mutuh/BlogBundle/blob/master/Resources/doc/index_ru.md)
-
 Installation
 ------------
 

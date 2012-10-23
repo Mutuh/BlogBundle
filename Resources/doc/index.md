@@ -7,12 +7,12 @@ Simple small bundle for simple blogs
 
 This version of the bundle requires:
 
-1. Symfony >= 2.1
-2. LiipFunctionalTestBundle for testing
-3. DoctrineFixturesBundle for fixtures
+1. Symfony >= 2.0
+2. LiipFunctionalTestBundle for testing (optional)
+3. DoctrineFixturesBundle for fixtures (optional)
 4. SonataAdminBundle for administering
 5. StofDoctrineExtensionsBundle for timestamps
-6. KnpPaginatorBundle for automate pagination
+6. KnpPaginatorBundle for pagination
 
 ## Installation
 
@@ -69,8 +69,8 @@ public function registerBundles()
 
 ### Step 3: Import BlogBundle routing and update your config file
 
-Now that you have installed and activated the bundle, all that is left to do is import the StfalconBlogBundle
-and SonataAdminBundle routings:
+Now that you have installed and activated the bundle, all that is left to do is
+import the StfalconBlogBundle and SonataAdminBundle routings:
 
 In YAML:
 
@@ -78,6 +78,15 @@ In YAML:
 # app/config/routing.yml
 _stfalcon_blog:
     resource: "@StfalconBlogBundle/Resources/config/routing.yml"
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
 ```
 [Routing in SonataAdminBundle](https://github.com/sonata-project/SonataAdminBundle/blob/master/Resources/doc/reference/getting_started.rst#step-1-define-sonataadminbundle-routes)
 
@@ -106,28 +115,10 @@ stof_doctrine_extensions:
     default_locale: en_US
     orm:
         default:
-            loggable: false
-            sluggable: true
             timestampable: true
-            translatable: false
-            tree: false
 ```
 
-### Step 4: Configure a pagination
-
-Set a number of items you intend to show per page.
-
-Add a new line to parameters:
-
-In YAML:
-
-``` yaml
-# app/config/parameters.yml
-parameters:
-    page_range: 10
-```
-
-### Step 5: Update your database schema
+### Step 4: Update your database schema and install assets
 
 Now that the bundle is configured, the last thing you need to do is update your
 database schema because you have added a two new entities, the `Post` and the `Tag`.
