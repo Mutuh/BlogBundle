@@ -73,6 +73,8 @@ In YAML:
 # app/config/config.yml
 # StfalconBlogBundle Configuration
 stfalcon_blog:
+    upload_dir: %kernel.root_dir%/../web/uploads/images
+    disqus_shortname: "your-disqus-shortname-goes-here"
     rss:
         title: "your-blog-title-goes-here"
         description: "your-blog-description-goes-here"
