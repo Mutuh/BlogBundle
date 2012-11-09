@@ -2,7 +2,6 @@
 
 namespace Stfalcon\Bundle\BlogBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -13,43 +12,55 @@ use Stfalcon\Bundle\BlogBundle\Entity\Post;
  *
  * @author Stepan Tanasiychuk <ceo@stfalcon.com>
  */
-class PostController extends Controller
+class PostController extends AbstractController
 {
+
+    private function _getRequestArrayWithDisqusShortname($array)
+    {
+        $config = $this->container->getParameter('stfalcon_blog.config');
+        return array_merge(
+            $array,
+            array('disqus_shortname' => $config['disqus_shortname'])
+        );
+    }
 
     /**
      * List of posts for admin
      *
+     * @Route("/blog/{title}/{page}", name="blog",
+     *      requirements={"page"="\d+", "title"="page"},
+     *      defaults={"page"="1", "title"="page"})
+     * @Template()
+     *
      * @param int $page Page number
      *
      * @return array
-     * @Route("/blog/{title}/{page}", name="blog", requirements={"page" = "\d+"}, defaults={"page" = "1", "title" = "page"} )
-     * @Template()
      */
     public function indexAction($page)
     {
         $allPosts = $this->get('doctrine')->getEntityManager()
-                        ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
-
-        $pageRange = $this->container->getParameter('page_range');
-
-        $posts = $this->get('knp_paginator')->paginate($allPosts, $page, $pageRange);
+                ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
+        $posts= $this->get('knp_paginator')->paginate($allPosts, $page, 10);
 
         if ($this->has('application_default.menu.breadcrumbs')) {
             $breadcrumbs = $this->get('application_default.menu.breadcrumbs');
             $breadcrumbs->addChild('Блог')->setCurrent(true);
         }
 
-        return array('posts' => $posts);
+        return $this->_getRequestArrayWithDisqusShortname(array(
+            'posts' => $posts
+        ));
     }
 
     /**
      * View post
      *
+     * @Route("/blog/post/{slug}", name="blog_post_view")
+     * @Template()
+     *
      * @param Post $post
      *
      * @return array
-     * @Route("/blog/post/{slug}", name="blog_post_view")
-     * @Template()
      */
     public function viewAction(Post $post)
     {
@@ -59,16 +70,17 @@ class PostController extends Controller
             $breadcrumbs->addChild($post->getTitle())->setCurrent(true);
         }
 
-        return array(
-            'post' => $post,
-        );
+        return $this->_getRequestArrayWithDisqusShortname(array(
+            'post' => $post
+        ));
     }
 
     /**
      * RSS feed
      *
-     * @return Response
      * @Route("/blog/rss", name="blog_rss")
+     *
+     * @return Response
      */
     public function rssAction()
     {
@@ -96,10 +108,11 @@ class PostController extends Controller
     /**
      * Show last blog posts
      *
+     * @Template()
+     *
      * @param int $count A count of posts
      *
      * @return array()
-     * @Template()
      */
     public function lastAction($count = 1)
     {

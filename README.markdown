@@ -1,30 +1,21 @@
-BlogBundle
+StfalconBlogBundle
 =============
 
-The BlogBundle adds some basic support for blogs and tags.
-This bundle requires configured sonata/admin-bundle with ORM support for administration
+The StfalconBlogBundle adds some basic support for blogs and tags.
+This bundle requires configured SonataAdminBundle with ORM support for administration
 and StofDoctrineExtensionsBundle for timestamps
 
-Features include:
+Studio stfalcon.com use this bundle for blog http://stfalcon.com/blog
 
-- Posts and tags can be stored via Doctrine ORM
+Features include:
+- Posts & Tags can be stored via Doctrine ORM
 - Pagination of posts and tags
 - Administrating via SonataAdminBundle
-- Syntax highlighting with geshi.
-  Wrap code blocks with  ```<pre lang="LANGUAGE" line="1">``` and ```</pre>``` where "LANGUAGE" is a Geshi supported language syntax.
+- Syntax highlighting with geshi. Wrap code blocks with  ```<pre lang="LANGUAGE" line="1"> ... </pre>``` where "LANGUAGE" is a [Geshi](http://qbnz.com/highlighter/) supported language syntax.
 - Cut is available with <!--more--> tag
-- Unit tested
+- PHPUnit tests
+- Disqus comments widget
 
-
-Documentation
--------------
-
-The bulk of the documentation is stored in the `Resources/doc/index.md`
-file in this bundle:
-
-[Read the Documentation for master](https://github.com/mutuh/BlogBundle/blob/master/Resources/doc/index.md)
-
-[Read the Documentation for master (Russian language)](https://github.com/mutuh/BlogBundle/blob/master/Resources/doc/index_ru.md)
 
 Installation
 ------------
@@ -41,7 +32,7 @@ This bundle is under the MIT license. See the complete license in the bundle:
 About
 -----
 
-PageBundle is a [stfalcon](https://github.com/stfalcon) initiative.
+StfalconBlogBundle is a [stfalcon](https://github.com/stfalcon) initiative.
 
 Reporting an issue or a feature request
 ---------------------------------------
