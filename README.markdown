@@ -20,7 +20,7 @@ Features include:
 Installation
 ------------
 
-All the installation instructions are located in [documentation](https://github.com/stfalcon/BlogBundle/blob/master/Resources/doc/index.md).
+All the installation instructions are located in [documentation](https://github.com/mutuh/BlogBundle/blob/master/Resources/doc/index.md).
 
 License
 -------

@@ -1,5 +1,5 @@
 {
-    "name": "stfalcon/blog-bundle",
+    "name": "mutuh/blog-bundle",
     "description": "Simple blog module.",
     "keywords": ["blog"],
     "type": "symfony-bundle",

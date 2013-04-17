@@ -16,12 +16,13 @@ This version of the bundle requires:
 
 ## Installation
 
-Installation is a quick 4 step process:
+Installation is a quick 5 step process:
 
 1. Add BlogBundle in your composer.json
 2. Enable the Bundle
 3. Import BlogBundle routing and update your config file
-4. Update your database schema
+4. Configure a pagination
+5. Update your database schema
 
 ### Step 1: Add BlogBundle in your composer.json
 
@@ -95,6 +96,7 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 ```
+[Routing in SonataAdminBundle](https://github.com/sonata-project/SonataAdminBundle/blob/master/Resources/doc/reference/getting_started.rst#step-1-define-sonataadminbundle-routes)
 
 [See more info about routing in SonataAdminBundle](https://github.com/sonata-project/SonataAdminBundle/blob/master/Resources/doc/reference/getting_started.rst#step-1-define-sonataadminbundle-routes)
 
@@ -106,6 +108,7 @@ In YAML:
 # app/config/config.yml
 # StfalconBlogBundle Configuration
 stfalcon_blog:
+    upload_dir: %kernel.root_dir%/../web/uploads/images
     disqus_shortname: "your-disqus-shortname-goes-here"
     rss:
         title: "your-blog-title-goes-here"

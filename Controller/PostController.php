@@ -5,7 +5,6 @@ namespace Stfalcon\Bundle\BlogBundle\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 use Stfalcon\Bundle\BlogBundle\Entity\Post;
 
 /**
@@ -94,7 +93,7 @@ class PostController extends AbstractController
         $feed->setLink($this->generateUrl('blog_rss', array(), true));
 
         $posts = $this->get('doctrine')->getEntityManager()
-                ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
+                        ->getRepository("StfalconBlogBundle:Post")->getAllPosts();
         foreach ($posts as $post) {
             $entry = new \Zend\Feed\Writer\Entry();
             $entry->setTitle($post->getTitle());
@@ -118,8 +117,9 @@ class PostController extends AbstractController
     public function lastAction($count = 1)
     {
         $posts = $this->get('doctrine')->getEntityManager()
-                ->getRepository("StfalconBlogBundle:Post")->getLastPosts($count);
+                        ->getRepository("StfalconBlogBundle:Post")->getLastPosts($count);
 
         return array('posts' => $posts);
     }
+
 }

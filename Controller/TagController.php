@@ -4,7 +4,6 @@ namespace Stfalcon\Bundle\BlogBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 use Stfalcon\Bundle\BlogBundle\Entity\Tag;
 
 /**
